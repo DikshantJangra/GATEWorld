@@ -19,8 +19,22 @@ export async function GET() {
     }
     info[label + "_ms"] = Date.now() - t;
   };
-  await tryIt("default", () => getStore("library").get("db", { type: "json" }));
-  await tryIt("strong", () => getStore({ name: "library", consistency: "strong" }).get("db", { type: "json" }));
-  await tryIt("rawfetch", () => fetch("https://api.netlify.com/api/v1/", { cache: "no-store" }));
+  const c = JSON.parse(Buffer.from(process.env.NETLIFY_BLOBS_CONTEXT ?? "e30=", "base64").toString());
+  info.keys = Object.keys(c);
+  info.hasEdge = !!c.edgeURL;
+  info.api = c.apiURL;
+  for (const [label, base, path] of [
+    ["edge", c.edgeURL, `/${c.siteID}/library/db`],
+    ["api", c.apiURL ?? "https://api.netlify.com", `/api/v1/blobs/${c.siteID}/library/db`],
+  ] as const) {
+    const t = Date.now();
+    try {
+      const r = await fetch(new URL(path, base), { headers: { authorization: `Bearer ${c.token}` }, signal: AbortSignal.timeout(6000), cache: "no-store" });
+      info[label] = `${r.status} ${(await r.text()).slice(0, 120)}`;
+    } catch (e) {
+      info[label] = String(e);
+    }
+    info[label + "_ms"] = Date.now() - t;
+  }
   return Response.json(info);
 }
