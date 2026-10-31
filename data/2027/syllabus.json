@@ -1,0 +1,628 @@
+{
+ "version": 1,
+ "sections": [
+  {
+   "id": "general-aptitude",
+   "order": 0,
+   "name": "General Aptitude",
+   "priority": "High",
+   "topics": [
+    {
+     "id": "general-aptitude.verbal-aptitude",
+     "name": "Verbal aptitude",
+     "priority": "High"
+    },
+    {
+     "id": "general-aptitude.quantitative-aptitude",
+     "name": "Quantitative aptitude",
+     "priority": "High"
+    },
+    {
+     "id": "general-aptitude.analytical-aptitude",
+     "name": "Analytical aptitude",
+     "priority": "High"
+    },
+    {
+     "id": "general-aptitude.spatial-aptitude",
+     "name": "Spatial aptitude",
+     "priority": "High"
+    }
+   ]
+  },
+  {
+   "id": "engineering-mathematics",
+   "order": 1,
+   "name": "Engineering Mathematics",
+   "priority": "High",
+   "topics": [
+    {
+     "id": "engineering-mathematics.propositional-logic",
+     "name": "Propositional logic",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.first-order-logic",
+     "name": "First order logic",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.sets-relations-functions",
+     "name": "Sets, relations, functions",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.partial-orders-lattices",
+     "name": "Partial orders & lattices",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.monoids-groups",
+     "name": "Monoids, Groups",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.graphs-connectivity",
+     "name": "Graphs: connectivity",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.graphs-matching",
+     "name": "Graphs: matching",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.graphs-colouring",
+     "name": "Graphs: colouring",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.combinatorics-counting",
+     "name": "Combinatorics: counting",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.recurrence-relations",
+     "name": "Recurrence relations",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.generating-functions",
+     "name": "Generating functions",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.matrices-determinants",
+     "name": "Matrices & determinants",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.system-of-linear-equations",
+     "name": "System of linear equations",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.eigenvalues-eigenvectors",
+     "name": "Eigenvalues & eigenvectors",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.lu-decomposition",
+     "name": "LU decomposition",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.limits-continuity-differentiability",
+     "name": "Limits, continuity, differentiability",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.maxima-minima",
+     "name": "Maxima & minima",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.mean-value-theorem",
+     "name": "Mean value theorem",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.integration",
+     "name": "Integration",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.random-variables",
+     "name": "Random variables",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.distributions-unif-norm-exp-poisson-binom",
+     "name": "Distributions (Unif/Norm/Exp/Poisson/Binom)",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.mean-median-mode-sd",
+     "name": "Mean, median, mode, SD",
+     "priority": "High"
+    },
+    {
+     "id": "engineering-mathematics.conditional-probability-bayes",
+     "name": "Conditional probability & Bayes",
+     "priority": "High"
+    }
+   ]
+  },
+  {
+   "id": "digital-logic",
+   "order": 2,
+   "name": "Digital Logic",
+   "priority": "Med",
+   "topics": [
+    {
+     "id": "digital-logic.boolean-algebra-minimization",
+     "name": "Boolean algebra & minimization",
+     "priority": "Med"
+    },
+    {
+     "id": "digital-logic.karnaugh-map",
+     "name": "Karnaugh map",
+     "priority": "Med"
+    },
+    {
+     "id": "digital-logic.tabular-method-quine-mccluskey",
+     "name": "Tabular method (Quine-McCluskey)",
+     "priority": "Med"
+    },
+    {
+     "id": "digital-logic.combinational-circuit-design",
+     "name": "Combinational circuit design",
+     "priority": "Med"
+    },
+    {
+     "id": "digital-logic.sequential-circuit-design",
+     "name": "Sequential circuit design",
+     "priority": "Med"
+    },
+    {
+     "id": "digital-logic.number-representation-fixed-point",
+     "name": "Number representation (fixed point)",
+     "priority": "Med"
+    },
+    {
+     "id": "digital-logic.floating-point-arithmetic",
+     "name": "Floating point & arithmetic",
+     "priority": "Med"
+    }
+   ]
+  },
+  {
+   "id": "computer-org-arch",
+   "order": 3,
+   "name": "Computer Org & Arch",
+   "priority": "Med",
+   "topics": [
+    {
+     "id": "computer-org-arch.instruction-set-addressing-modes",
+     "name": "Instruction set & addressing modes",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-org-arch.alu-design",
+     "name": "ALU design",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-org-arch.control-unit-hardwired",
+     "name": "Control unit: hardwired",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-org-arch.control-unit-microprogrammed",
+     "name": "Control unit: microprogrammed",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-org-arch.memory-hierarchy-performance",
+     "name": "Memory hierarchy & performance",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-org-arch.cache-memory-mapping",
+     "name": "Cache memory mapping",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-org-arch.i-o-interface-interrupts",
+     "name": "I/O interface: interrupts",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-org-arch.i-o-interface-dma",
+     "name": "I/O interface: DMA",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-org-arch.instruction-pipelining",
+     "name": "Instruction pipelining",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-org-arch.pipeline-hazards",
+     "name": "Pipeline hazards",
+     "priority": "Med"
+    }
+   ]
+  },
+  {
+   "id": "programming-data-structures",
+   "order": 4,
+   "name": "Programming & Data Structures",
+   "priority": "High",
+   "topics": [
+    {
+     "id": "programming-data-structures.programming-in-c",
+     "name": "Programming in C",
+     "priority": "High"
+    },
+    {
+     "id": "programming-data-structures.recursion",
+     "name": "Recursion",
+     "priority": "High"
+    },
+    {
+     "id": "programming-data-structures.arrays",
+     "name": "Arrays",
+     "priority": "High"
+    },
+    {
+     "id": "programming-data-structures.stacks",
+     "name": "Stacks",
+     "priority": "High"
+    },
+    {
+     "id": "programming-data-structures.queues",
+     "name": "Queues",
+     "priority": "High"
+    },
+    {
+     "id": "programming-data-structures.linked-lists",
+     "name": "Linked lists",
+     "priority": "High"
+    },
+    {
+     "id": "programming-data-structures.trees",
+     "name": "Trees",
+     "priority": "High"
+    },
+    {
+     "id": "programming-data-structures.binary-search-trees",
+     "name": "Binary search trees",
+     "priority": "High"
+    },
+    {
+     "id": "programming-data-structures.binary-heaps",
+     "name": "Binary heaps",
+     "priority": "High"
+    },
+    {
+     "id": "programming-data-structures.graphs-representation",
+     "name": "Graphs (representation)",
+     "priority": "High"
+    }
+   ]
+  },
+  {
+   "id": "algorithms",
+   "order": 5,
+   "name": "Algorithms",
+   "priority": "High",
+   "topics": [
+    {
+     "id": "algorithms.searching",
+     "name": "Searching",
+     "priority": "High"
+    },
+    {
+     "id": "algorithms.sorting",
+     "name": "Sorting",
+     "priority": "High"
+    },
+    {
+     "id": "algorithms.hashing",
+     "name": "Hashing",
+     "priority": "High"
+    },
+    {
+     "id": "algorithms.asymptotic-complexity-time-space",
+     "name": "Asymptotic complexity (time & space)",
+     "priority": "High"
+    },
+    {
+     "id": "algorithms.greedy",
+     "name": "Greedy",
+     "priority": "High"
+    },
+    {
+     "id": "algorithms.dynamic-programming",
+     "name": "Dynamic programming",
+     "priority": "High"
+    },
+    {
+     "id": "algorithms.divide-conquer",
+     "name": "Divide & conquer",
+     "priority": "High"
+    },
+    {
+     "id": "algorithms.graph-traversals-bfs-dfs",
+     "name": "Graph traversals (BFS/DFS)",
+     "priority": "High"
+    },
+    {
+     "id": "algorithms.minimum-spanning-trees",
+     "name": "Minimum spanning trees",
+     "priority": "High"
+    },
+    {
+     "id": "algorithms.shortest-paths",
+     "name": "Shortest paths",
+     "priority": "High"
+    }
+   ]
+  },
+  {
+   "id": "theory-of-computation",
+   "order": 6,
+   "name": "Theory of Computation",
+   "priority": "Med",
+   "topics": [
+    {
+     "id": "theory-of-computation.regular-expressions-finite-automata",
+     "name": "Regular expressions & finite automata",
+     "priority": "Med"
+    },
+    {
+     "id": "theory-of-computation.context-free-grammars",
+     "name": "Context-free grammars",
+     "priority": "Med"
+    },
+    {
+     "id": "theory-of-computation.push-down-automata",
+     "name": "Push-down automata",
+     "priority": "Med"
+    },
+    {
+     "id": "theory-of-computation.regular-cfl-properties",
+     "name": "Regular & CFL properties",
+     "priority": "Med"
+    },
+    {
+     "id": "theory-of-computation.pumping-lemma",
+     "name": "Pumping lemma",
+     "priority": "Med"
+    },
+    {
+     "id": "theory-of-computation.turing-machines",
+     "name": "Turing machines",
+     "priority": "Med"
+    },
+    {
+     "id": "theory-of-computation.undecidability",
+     "name": "Undecidability",
+     "priority": "Med"
+    }
+   ]
+  },
+  {
+   "id": "compiler-design",
+   "order": 7,
+   "name": "Compiler Design",
+   "priority": "Med",
+   "topics": [
+    {
+     "id": "compiler-design.lexical-analysis",
+     "name": "Lexical analysis",
+     "priority": "Med"
+    },
+    {
+     "id": "compiler-design.parsing",
+     "name": "Parsing",
+     "priority": "Med"
+    },
+    {
+     "id": "compiler-design.syntax-directed-translation",
+     "name": "Syntax-directed translation",
+     "priority": "Med"
+    },
+    {
+     "id": "compiler-design.runtime-environments",
+     "name": "Runtime environments",
+     "priority": "Med"
+    },
+    {
+     "id": "compiler-design.intermediate-code-generation",
+     "name": "Intermediate code generation",
+     "priority": "Med"
+    },
+    {
+     "id": "compiler-design.local-optimisation",
+     "name": "Local optimisation",
+     "priority": "Med"
+    },
+    {
+     "id": "compiler-design.data-flow-analysis",
+     "name": "Data flow analysis",
+     "priority": "Med"
+    }
+   ]
+  },
+  {
+   "id": "operating-systems",
+   "order": 8,
+   "name": "Operating Systems",
+   "priority": "High",
+   "topics": [
+    {
+     "id": "operating-systems.system-calls",
+     "name": "System calls",
+     "priority": "High"
+    },
+    {
+     "id": "operating-systems.processes-threads",
+     "name": "Processes & threads",
+     "priority": "High"
+    },
+    {
+     "id": "operating-systems.inter-process-communication",
+     "name": "Inter-process communication",
+     "priority": "High"
+    },
+    {
+     "id": "operating-systems.concurrency-synchronization",
+     "name": "Concurrency & synchronization",
+     "priority": "High"
+    },
+    {
+     "id": "operating-systems.deadlock",
+     "name": "Deadlock",
+     "priority": "High"
+    },
+    {
+     "id": "operating-systems.cpu-scheduling",
+     "name": "CPU scheduling",
+     "priority": "High"
+    },
+    {
+     "id": "operating-systems.i-o-scheduling",
+     "name": "I/O scheduling",
+     "priority": "High"
+    },
+    {
+     "id": "operating-systems.memory-management",
+     "name": "Memory management",
+     "priority": "High"
+    },
+    {
+     "id": "operating-systems.virtual-memory",
+     "name": "Virtual memory",
+     "priority": "High"
+    },
+    {
+     "id": "operating-systems.file-systems",
+     "name": "File systems",
+     "priority": "High"
+    }
+   ]
+  },
+  {
+   "id": "databases",
+   "order": 9,
+   "name": "Databases",
+   "priority": "Med",
+   "topics": [
+    {
+     "id": "databases.er-model",
+     "name": "ER model",
+     "priority": "Med"
+    },
+    {
+     "id": "databases.relational-algebra",
+     "name": "Relational algebra",
+     "priority": "Med"
+    },
+    {
+     "id": "databases.tuple-calculus",
+     "name": "Tuple calculus",
+     "priority": "Med"
+    },
+    {
+     "id": "databases.sql",
+     "name": "SQL",
+     "priority": "Med"
+    },
+    {
+     "id": "databases.integrity-constraints",
+     "name": "Integrity constraints",
+     "priority": "Med"
+    },
+    {
+     "id": "databases.normal-forms",
+     "name": "Normal forms",
+     "priority": "Med"
+    },
+    {
+     "id": "databases.file-organization",
+     "name": "File organization",
+     "priority": "Med"
+    },
+    {
+     "id": "databases.indexing-b-b-trees",
+     "name": "Indexing (B / B+ trees)",
+     "priority": "Med"
+    },
+    {
+     "id": "databases.transactions-concurrency-control",
+     "name": "Transactions & concurrency control",
+     "priority": "Med"
+    }
+   ]
+  },
+  {
+   "id": "computer-networks",
+   "order": 10,
+   "name": "Computer Networks",
+   "priority": "Med",
+   "topics": [
+    {
+     "id": "computer-networks.principles-of-layering",
+     "name": "Principles of layering",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-networks.switching-performance-metrics",
+     "name": "Switching & performance metrics",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-networks.data-link-error-detection",
+     "name": "Data link: error detection",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-networks.mac-ethernet",
+     "name": "MAC & Ethernet",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-networks.routing-distance-vector",
+     "name": "Routing: distance vector",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-networks.routing-link-state",
+     "name": "Routing: link state",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-networks.ipv4-fragmentation-cidr-nat",
+     "name": "IPv4: fragmentation, CIDR, NAT",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-networks.tcp-flow-congestion-control",
+     "name": "TCP: flow & congestion control",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-networks.socket-api",
+     "name": "Socket API",
+     "priority": "Med"
+    },
+    {
+     "id": "computer-networks.dns-http",
+     "name": "DNS & HTTP",
+     "priority": "Med"
+    }
+   ]
+  }
+ ]
+}
