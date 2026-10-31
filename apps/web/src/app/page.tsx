@@ -20,7 +20,10 @@ export default function Landing() {
       <Wallpaper />
       <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/45" />
       <header className="relative grid grid-cols-3 items-start p-5 text-sm">
-        <span />
+        <Link href="/" className="flex items-center gap-2.5 opacity-90 transition-opacity hover:opacity-100">
+          <img src="/logo.png" alt="GW" className="h-9 w-9 object-contain drop-shadow" />
+          <span className="font-bold tracking-tight text-white text-base">GW</span>
+        </Link>
         <div className="justify-self-center"><TimeBlock /></div>
         <nav className="flex justify-end gap-6">
           {links.map((l) => (
@@ -31,6 +34,11 @@ export default function Landing() {
         </nav>
       </header>
       <section className={`${hind.className} relative mt-[5vh] flex flex-col items-center px-4 text-center`}>
+        <img
+          src="/logo.png"
+          alt="GW"
+          className="mb-4 h-24 w-24 object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.55)] sm:h-32 sm:w-32 transition-transform duration-300 hover:scale-105"
+        />
         <h1 className="whitespace-nowrap text-[clamp(4rem,14vw,12rem)] leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,.45)]">
           गेट वर्ल्ड
         </h1>
