@@ -1,6 +1,6 @@
 import type { Db } from "@/library/types";
 
-// Cloudflare bindings (see wrangler.jsonc): DB = D1, IMAGES = R2, ADMIN_TOKEN = secret.
+// Cloudflare bindings (see wrangler.jsonc): DB = D1, LIBRARY_IMG = R2, ADMIN_TOKEN = secret.
 async function bindings() {
   return (await import("cloudflare:workers")).env;
 }
@@ -31,14 +31,14 @@ export async function mutate<T>(fn: (db: Db) => T | Promise<T>): Promise<T> {
 }
 
 export async function saveImage(name: string, bytes: Uint8Array) {
-  await (await bindings()).IMAGES.put(name, bytes);
+  await (await bindings()).LIBRARY_IMG.put(name, bytes);
 }
 export async function readImage(name: string) {
-  const obj = await (await bindings()).IMAGES.get(name);
+  const obj = await (await bindings()).LIBRARY_IMG.get(name);
   return obj ? obj.arrayBuffer() : null;
 }
 export async function removeImage(name: string) {
-  await (await bindings()).IMAGES.delete(name).catch(() => {});
+  await (await bindings()).LIBRARY_IMG.delete(name).catch(() => {});
 }
 export async function hashName(bytes: Uint8Array) {
   const d = await crypto.subtle.digest("SHA-256", bytes as Uint8Array<ArrayBuffer>);

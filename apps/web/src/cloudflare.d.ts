@@ -12,7 +12,7 @@ declare module "cloudflare:workers" {
   }
   export const env: {
     DB: { prepare(sql: string): D1Statement };
-    IMAGES: {
+    LIBRARY_IMG: {
       put(key: string, value: Uint8Array): Promise<unknown>;
       get(key: string): Promise<R2Object | null>;
       delete(key: string): Promise<void>;

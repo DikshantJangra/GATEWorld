@@ -43,3 +43,6 @@ next-env.d.ts
 # library data and secrets
 /.data/
 .env*.local
+/dist/
+.vinext/
+.cloudflare/
