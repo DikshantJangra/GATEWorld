@@ -10,16 +10,17 @@ export async function GET() {
     netlify: process.env.NETLIFY,
     site: !!process.env.SITE_ID,
   };
-  const t = Date.now();
-  try {
-    const r = await Promise.race([
-      getStore("library").get("db", { type: "json" }).then(() => "ok"),
-      new Promise((_, rej) => setTimeout(() => rej(new Error("timeout 8s")), 8000)),
-    ]);
-    info.blobs = r;
-  } catch (e) {
-    info.blobs = String(e);
-  }
-  info.ms = Date.now() - t;
+  const tryIt = async (label: string, fn: () => Promise<unknown>) => {
+    const t = Date.now();
+    try {
+      info[label] = await Promise.race([fn().then(() => "ok"), new Promise((_, rej) => setTimeout(() => rej(new Error("timeout 6s")), 6000))]);
+    } catch (e) {
+      info[label] = String(e);
+    }
+    info[label + "_ms"] = Date.now() - t;
+  };
+  await tryIt("default", () => getStore("library").get("db", { type: "json" }));
+  await tryIt("strong", () => getStore({ name: "library", consistency: "strong" }).get("db", { type: "json" }));
+  await tryIt("rawfetch", () => fetch("https://api.netlify.com/api/v1/", { cache: "no-store" }));
   return Response.json(info);
 }
