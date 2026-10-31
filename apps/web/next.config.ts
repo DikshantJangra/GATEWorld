@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
   // year data lives at <repo>/data, outside this app
   turbopack: {
     root: path.join(__dirname, "../.."),
+    // Netlify has no cloudflare:workers module; swap in a stub so the build resolves it
+    ...(process.env.NETLIFY === "true" && { resolveAlias: { "cloudflare:workers": "./src/server/cf-stub.ts" } }),
     rules: {
       "*.css": {
         loaders: ["@tailwindcss/turbopack"],

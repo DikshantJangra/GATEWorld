@@ -1,7 +1,7 @@
 import type { Item } from "@/library/types";
 import { isLqip, parseYouTubeId, sniffImage } from "@/library/validate";
 import { MOODS } from "@/music/tracks";
-import { hashName, limited, mutate, saveImage } from "@/server/library";
+import { clientIp, hashName, limited, mutate, saveImage } from "@/server/library";
 
 const MAX_PENDING = 200;
 
@@ -10,8 +10,7 @@ const str = (v: FormDataEntryValue | null, n: number) => (typeof v === "string" 
 
 /** Anyone can submit; everything lands as "pending" until an admin approves it. */
 export async function POST(req: Request) {
-  // cf-connecting-ip is set by Cloudflare and cannot be spoofed by the client
-  const ip = req.headers.get("cf-connecting-ip") || "local";
+  const ip = clientIp(req);
   if (limited(ip)) return err("Too many submissions. Try again in an hour.", 429);
   if (Number(req.headers.get("content-length") ?? 0) > 3_200_000) return err("Image missing or over 3 MB", 413);
   const f = await req.formData().catch(() => null);
