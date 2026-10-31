@@ -11,7 +11,6 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@netlify/blobs": "^11.1.7",
     "next": "16.4.3",
     "react": "19.3.1",
     "react-dom": "19.3.1",

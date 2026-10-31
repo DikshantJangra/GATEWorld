@@ -1,35 +1,32 @@
-import { getStore } from "@netlify/blobs";
+import { deleteBlob, getBlob, putBlob } from "./blobs";
 import type { Db } from "@/library/types";
 
 const fresh = (): Db => ({ items: [], defaultWallpaper: null });
-const lib = () => getStore("library");
-const imgs = () => getStore("images");
+const dec = new TextDecoder();
 
-export async function read(): Promise<Db> {
-  return ((await lib().get("db", { type: "json" })) as Db | null) ?? fresh();
+async function load() {
+  const b = await getBlob("library", "db");
+  return { db: b ? (JSON.parse(dec.decode(b.bytes)) as Db) : fresh(), etag: b?.etag ?? null };
 }
+
+export const read = async () => (await load()).db;
 
 // ponytail: whole library is one JSON blob with an etag check on write.
 // Fine for a small moderated library; split into per-item blobs if it outgrows that.
 export async function mutate<T>(fn: (db: Db) => T | Promise<T>): Promise<T> {
-  const store = lib();
   for (let attempt = 0; attempt < 5; attempt++) {
-    const cur = await store.getWithMetadata("db", { type: "json" });
-    const db = (cur?.data as Db | undefined) ?? fresh();
+    const { db, etag } = await load();
     const out = await fn(db);
-    const w = await store.setJSON("db", db, cur ? { onlyIfMatch: cur.etag } : { onlyIfNew: true });
-    if (w.modified) return out;
+    if (await putBlob("library", "db", JSON.stringify(db), { ifMatch: etag })) return out;
   }
   throw new Error("library busy, retry");
 }
 
-export async function saveImage(name: string, bytes: Uint8Array) {
-  await imgs().set(name, bytes.slice().buffer as ArrayBuffer);
-}
+export const saveImage = (name: string, bytes: Uint8Array) => putBlob("images", name, bytes.slice().buffer as ArrayBuffer).then(() => {});
 export async function readImage(name: string): Promise<ArrayBuffer | null> {
-  return (await imgs().get(name, { type: "arrayBuffer" })) ?? null;
+  return (await getBlob("images", name))?.bytes ?? null;
 }
-export const removeImage = (name: string) => imgs().delete(name).catch(() => {});
+export const removeImage = (name: string) => deleteBlob("images", name).catch(() => {});
 
 export async function hashName(bytes: Uint8Array) {
   const d = await crypto.subtle.digest("SHA-256", bytes as Uint8Array<ArrayBuffer>);
