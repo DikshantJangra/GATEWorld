@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS library (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  data TEXT NOT NULL,
+  version INTEGER NOT NULL
+);

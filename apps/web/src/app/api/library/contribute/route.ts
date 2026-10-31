@@ -3,13 +3,17 @@ import { isLqip, parseYouTubeId, sniffImage } from "@/library/validate";
 import { MOODS } from "@/music/tracks";
 import { hashName, limited, mutate, saveImage } from "@/server/library";
 
+const MAX_PENDING = 200;
+
 const err = (error: string, status: number) => Response.json({ error }, { status });
 const str = (v: FormDataEntryValue | null, n: number) => (typeof v === "string" ? v.trim().slice(0, n) : "");
 
 /** Anyone can submit; everything lands as "pending" until an admin approves it. */
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "local";
+  // cf-connecting-ip is set by Cloudflare and cannot be spoofed by the client
+  const ip = req.headers.get("cf-connecting-ip") || "local";
   if (limited(ip)) return err("Too many submissions. Try again in an hour.", 429);
+  if (Number(req.headers.get("content-length") ?? 0) > 3_200_000) return err("Image missing or over 3 MB", 413);
   const f = await req.formData().catch(() => null);
   if (!f) return err("Bad form", 400);
   const kind = f.get("kind");
@@ -25,6 +29,7 @@ export async function POST(req: Request) {
     if (Object.values(MOODS).flat().some((t) => t.id === ytId)) return err("Already in the default playlist", 409);
     return mutate((db) => {
       if (db.items.some((i) => i.ytId === ytId)) return err("Already suggested", 409);
+      if (db.items.filter((i) => i.status === "pending").length >= MAX_PENDING) return err("Queue is full, try later", 503);
       const item: Item = { ...base, id: ytId, kind: "music", ytId, mood, artist: str(f.get("artist"), 80) };
       db.items.push(item);
       return Response.json({ ok: true, status: "pending" }, { status: 201 });
@@ -39,9 +44,10 @@ export async function POST(req: Request) {
     const lqip = str(f.get("lqip"), 4100);
     if (!ext) return err("Use a JPG, PNG or WebP image", 415);
     if (!isLqip(lqip)) return err("Bad preview", 400);
-    const name = `${hashName(bytes)}.${ext}`;
+    const name = `${await hashName(bytes)}.${ext}`;
     return mutate(async (db) => {
       if (db.items.some((i) => i.file === name)) return err("Already in the library", 409);
+      if (db.items.filter((i) => i.status === "pending").length >= MAX_PENDING) return err("Queue is full, try later", 503);
       await saveImage(name, bytes);
       db.items.push({ ...base, id: name.split(".")[0], kind: "wallpaper", file: name, lqip, credit: str(f.get("credit"), 80) });
       return Response.json({ ok: true, status: "pending" }, { status: 201 });

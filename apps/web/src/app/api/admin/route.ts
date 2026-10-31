@@ -4,12 +4,12 @@ const deny = (ok: boolean | null) =>
   ok === null ? Response.json({ error: "ADMIN_TOKEN is not set" }, { status: 503 }) : ok ? null : Response.json({ error: "Wrong token" }, { status: 401 });
 
 export async function GET(req: Request) {
-  return deny(isAdmin(req)) ?? Response.json(await read());
+  return deny(await isAdmin(req)) ?? Response.json(await read());
 }
 
 /** { id, action: approve | reject | default | undefault } */
 export async function POST(req: Request) {
-  const bad = deny(isAdmin(req));
+  const bad = deny(await isAdmin(req));
   if (bad) return bad;
   const { id, action } = await req.json().catch(() => ({}));
   return mutate(async (db) => {

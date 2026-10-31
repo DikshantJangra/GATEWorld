@@ -1,20 +1,19 @@
 import { IMG_FILE, MIME, type ImgExt } from "@/library/validate";
-import { readImage } from "@/server/library";
+import { isAdmin, read, readImage } from "@/server/library";
 
-// File names are content hashes, so the response can be cached forever.
-export async function GET(_req: Request, ctx: { params: Promise<{ file: string }> }) {
+// File names are content hashes. Only approved images are public; pending ones need the admin token.
+export async function GET(req: Request, ctx: { params: Promise<{ file: string }> }) {
   const { file } = await ctx.params;
   if (!IMG_FILE.test(file)) return new Response("Not found", { status: 404 });
-  try {
-    const bytes = await readImage(file);
-    return new Response(new Uint8Array(bytes), {
-      headers: {
-        "Content-Type": MIME[file.split(".")[1] as ImgExt],
-        "Cache-Control": "public, max-age=31536000, immutable",
-        "X-Content-Type-Options": "nosniff",
-      },
-    });
-  } catch {
-    return new Response("Not found", { status: 404 });
-  }
+  const approved = (await read()).items.some((i) => i.file === file && i.status === "approved");
+  if (!approved && !(await isAdmin(req))) return new Response("Not found", { status: 404 });
+  const bytes = await readImage(file);
+  if (!bytes) return new Response("Not found", { status: 404 });
+  return new Response(bytes, {
+    headers: {
+      "Content-Type": MIME[file.split(".")[1] as ImgExt],
+      "Cache-Control": approved ? "public, max-age=31536000, immutable" : "private, no-store",
+      "X-Content-Type-Options": "nosniff",
+    },
+  });
 }

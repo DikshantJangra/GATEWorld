@@ -48,7 +48,7 @@ export default function Admin() {
           {[...db.items].sort((a, b) => (a.status === b.status ? b.createdAt - a.createdAt : a.status === "pending" ? -1 : 1)).map((i) => (
             <li key={i.id} className="flex items-center gap-3 rounded border border-zinc-300 p-2 text-sm dark:border-zinc-700">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={i.kind === "wallpaper" ? `/api/library/img/${i.file}` : `https://img.youtube.com/vi/${i.ytId}/default.jpg`} alt="" className="h-14 w-24 rounded object-cover" />
+              <img src={i.kind === "wallpaper" ? (i.lqip ?? "") : `https://img.youtube.com/vi/${i.ytId}/default.jpg`} alt="" className="h-14 w-24 rounded object-cover" />
               <div className="min-w-0 flex-1">
                 <div className="truncate font-medium">{i.title} {i.id === db.defaultWallpaper && <span className="text-emerald-500">(site default)</span>}</div>
                 <div className="truncate text-xs text-zinc-500">
